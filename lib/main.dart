@@ -88,7 +88,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var selectedIndex = 2 ;
+  var selectedIndex = 0 ;
 
 
   @override
@@ -282,7 +282,8 @@ class recentlyviewed extends StatelessWidget {
           mainAxisAlignment : MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            
+
+            SizedBox(width: 70,),
             ElevatedButton.icon(
               onPressed: () {
                 appState.removeRecents();
