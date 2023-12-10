@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         title: 'Namer App',
         theme: ThemeData(
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         ),
         home: MyHomePage(),
       ),
@@ -113,7 +113,7 @@ switch (selectedIndex) {
                   label: Text('Favorites'),
                 ),
                 NavigationRailDestination(
-                  icon: Icon(Icons.recent_actors),
+                  icon: Icon(Icons.history),
                   label: Text('Recents'),
                 ),
               ],
@@ -273,7 +273,7 @@ class recentlyviewed extends StatelessWidget {
         ),
         for (var pair in appState.recents)
           ListTile(
-            leading: Icon(Icons.favorite),
+            leading: Icon(Icons.history),
             title: Text(pair.asLowerCase),
           ),
       ],
