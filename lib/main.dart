@@ -57,10 +57,20 @@ class MyAppState extends ChangeNotifier {
   void toggleRecents() {
   if (!recents.contains(current)) {
     recents.add(current);
+    notifyListeners();
+
   }
-  notifyListeners();
+  }
+  void removeRecents() {
+    recents.clear();
+    notifyListeners();
+
+  }
+
+
+  
 }
-  }
+
   
     
 
@@ -249,8 +259,7 @@ class recentlyviewed extends StatelessWidget {
 
 
 
-
-  @override 
+  @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
     print('Recents length: ${appState.recents.length}');
@@ -258,28 +267,50 @@ class recentlyviewed extends StatelessWidget {
     final style = theme.textTheme.displayMedium!.copyWith(
       color: theme.colorScheme.onPrimary,
     );
-     if (appState.recents.isEmpty) {
+
+    if (appState.recents.isEmpty) {
       return Center(
         child: Text('No recents yet'),
-        
       );
     }
 
-    return ListView(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: Text('You have ${appState.recents.length} recents:'),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ElevatedButton.icon(
+              onPressed: () {
+                appState.removeRecents();
+              },
+              icon: Icon(Icons.cancel), // You need to define 'icon' somewhere in your code
+              label: Text('clear'),
+            ),
+          ],
         ),
-        for (var pair in appState.recents)
-          ListTile(
-            leading: Icon(Icons.history),
-            title: Text(pair.asLowerCase),
+        Expanded(
+          child: ListView(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: Text('You have ${appState.recents.length} recents:'),
+              ),
+              for (var pair in appState.recents)
+                ListTile(
+                  leading: Icon(Icons.history),
+                  title: Text(pair.asLowerCase), // Assuming 'asLowerCase' is a valid property/method
+                ),
+            ],
           ),
+        ),
       ],
     );
   }
 }
+    
+
+  
 
     
 
