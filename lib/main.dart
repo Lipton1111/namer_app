@@ -278,13 +278,16 @@ class recentlyviewed extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Row(
-          mainAxisSize: MainAxisSize.min,
+                    
+          mainAxisAlignment : MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            
             ElevatedButton.icon(
               onPressed: () {
                 appState.removeRecents();
               },
-              icon: Icon(Icons.cancel), // You need to define 'icon' somewhere in your code
+              icon: Icon(Icons.cancel), 
               label: Text('clear'),
             ),
           ],
